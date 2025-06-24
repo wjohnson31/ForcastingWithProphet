@@ -21,7 +21,10 @@ class ForecastingVisualizer:
         self.historical_end = data['ds'].max()
         
         # Set style
-        plt.style.use('seaborn-v0_8')
+        try:
+            plt.style.use('seaborn-v0_8')
+        except OSError:
+            plt.style.use('seaborn')  # Fallback for newer versions
         sns.set_palette("husl")
     
     def plot_interactive_forecast(self, title="Interactive Forecast"):

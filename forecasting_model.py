@@ -42,9 +42,11 @@ class ForecastingModel:
             max_date (str): Maximum date to include
         """
         if min_date:
-            self.data = self.data[self.data['ds'] >= pd.to_datetime(min_date)]
+            min_date_dt = pd.to_datetime(min_date)
+            self.data = self.data[self.data['ds'] >= min_date_dt]
         if max_date:
-            self.data = self.data[self.data['ds'] <= pd.to_datetime(max_date)]
+            max_date_dt = pd.to_datetime(max_date)
+            self.data = self.data[self.data['ds'] <= max_date_dt]
         
         print(f"Prepared data: {len(self.data)} records")
         return self.data
